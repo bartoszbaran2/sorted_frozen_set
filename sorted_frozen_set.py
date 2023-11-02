@@ -15,4 +15,12 @@ class SortedFrozenSet:
         return iter(self._items)
 
     def __getitem__(self, index):
-        return self._items[index]
+        result = self._items[index]
+        return (
+            SortedFrozenSet(result)
+            if isinstance(index, slice)
+            else result
+        )
+
+    def __eq__(self, other):
+        return isinstance(other, SortedFrozenSet) and self._items == other._items
