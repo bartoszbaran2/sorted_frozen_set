@@ -1,11 +1,4 @@
-import pytest
-from sorted_frozen_set.sorted_frozen_set import SortedFrozenSet
-
-
-@pytest.fixture(scope='function')
-def s():
-    """return SortedFrozenSEt object"""
-    return SortedFrozenSet([6, 7, 3, 9])
+from sorted_frozen_set.tests.fixtures import s
 
 
 # Container protocol(in/not) - '__contains__'
