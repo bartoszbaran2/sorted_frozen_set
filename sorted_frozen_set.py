@@ -5,3 +5,6 @@ class SortedFrozenSet:
     def __contains__(self, item):
         # return self._items.__contains__(item)  # low level api
         return item in self._items
+
+    def __len__(self):
+        return len(self._items)
