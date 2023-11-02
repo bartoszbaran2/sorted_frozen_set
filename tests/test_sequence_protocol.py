@@ -19,13 +19,13 @@ def test_index_three(s2):
 def test_index_one_beyond_the_end(s2):
     with pytest.raises(IndexError) as ctx:
         s = s2[5]
-    assert 'list index out of range' in str(ctx)
+    assert 'tuple index out of range' in str(ctx)
 
 
 def test_index_one_before_the_beginning(s2):
     with pytest.raises(IndexError) as ctx:
         s = s2[-6]
-    assert 'list index out of range' in str(ctx)
+    assert 'tuple index out of range' in str(ctx)
 
 
 def test_slice_from_start(s2):

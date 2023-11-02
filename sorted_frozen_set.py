@@ -1,6 +1,8 @@
 class SortedFrozenSet:
     def __init__(self, items=None):
-        self._items = sorted(set(items) if items is not None else set())
+        self._items = tuple(sorted(
+            set(items) if items is not None
+            else set()))
 
     def __contains__(self, item):
         # return self._items.__contains__(item)  # low level api
@@ -28,4 +30,8 @@ class SortedFrozenSet:
         return self._items == other._items
 
     def __repr__(self):
-        return f'{type(self).__name__}({repr(self._items) if self._items else ""})'
+        args = '[' + ', '.join(map(repr, self._items)) + ']' if self._items else ""
+        return f'{type(self).__name__}({args})'
+
+    def __hash__(self):
+        return hash((type(self), self._items))
