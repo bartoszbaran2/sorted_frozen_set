@@ -24,3 +24,6 @@ class SortedFrozenSet:
 
     def __eq__(self, other):
         return isinstance(other, SortedFrozenSet) and self._items == other._items
+
+    def __repr__(self):
+        return f'{type(self).__name__}({repr(self._items) if self._items else ""})'
