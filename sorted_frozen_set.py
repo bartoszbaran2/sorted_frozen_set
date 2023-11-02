@@ -8,3 +8,8 @@ class SortedFrozenSet:
 
     def __len__(self):
         return len(self._items)
+
+    def __iter__(self):
+        # for item in self._items:
+        #     yield item
+        return iter(self._items)
