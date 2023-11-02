@@ -13,3 +13,6 @@ class SortedFrozenSet:
         # for item in self._items:
         #     yield item
         return iter(self._items)
+
+    def __getitem__(self, index):
+        return self._items[index]

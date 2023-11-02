@@ -11,3 +11,8 @@ def s():
 @pytest.fixture
 def s1():
     return SortedFrozenSet([7, 2, 1, 1, 9])
+
+
+@pytest.fixture
+def s2():
+    return SortedFrozenSet([1, 4, 9, 13, 15])
