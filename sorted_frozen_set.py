@@ -1,4 +1,7 @@
-class SortedFrozenSet:
+from collections.abc import Set
+
+
+class SortedFrozenSet(Set):
     def __init__(self, items=None):
         self._items = tuple(sorted(
             set(items) if items is not None
