@@ -38,3 +38,27 @@ class SortedFrozenSet(Set):
 
     def __hash__(self):
         return hash((type(self), self._items))
+
+    def issubset(self, iterable):
+        # s = SortedFrozenSet(iterable)
+        # for x in self._items:
+        #     if x not in s._items:
+        #         return False
+        # return True
+
+        return self <= SortedFrozenSet(iterable)
+
+    def issuperset(self, iterable):
+        return self >= SortedFrozenSet(iterable)
+
+    def intersection(self, iterable):
+        return self & SortedFrozenSet(iterable)
+
+    def symmetric_difference(self, iterable):
+        return self ^ SortedFrozenSet(iterable)
+
+    def union(self, iterable):
+        return self | SortedFrozenSet(iterable)
+
+    def difference(self, iterable):
+        return self - SortedFrozenSet(iterable)
