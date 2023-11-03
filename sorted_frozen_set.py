@@ -1,7 +1,10 @@
-from collections.abc import Set
+import sys
+from bisect import bisect_left
+from collections.abc import Set, Sequence
+from itertools import chain
 
 
-class SortedFrozenSet(Set):
+class SortedFrozenSet(Sequence, Set):
     def __init__(self, items=None):
         self._items = tuple(sorted(
             set(items) if items is not None
@@ -38,6 +41,28 @@ class SortedFrozenSet(Set):
 
     def __hash__(self):
         return hash((type(self), self._items))
+
+    def __add__(self, other):
+        if not isinstance(other, type(self)):
+            return NotImplemented
+        return SortedFrozenSet(chain(self._items, other._items))
+
+    def __mul__(self, other):
+        if isinstance(other, int):
+            raise TypeError(f'Can not multiply sequence by non-int of type {type(other)}')
+        return self if other > 0 else SortedFrozenSet()
+
+    def __rmul__(self, other):
+        return self * other
+
+    def index(self, item, start=0, stop=sys.maxsize):
+        idx = bisect_left(self._items, item, lo=start, hi=stop)
+        if (idx < len(self._items)) and self._items[idx] == item:
+            return idx
+        raise ValueError(f"{item!r} not found")
+
+    def count(self, item):
+        return int(item in self)
 
     def issubset(self, iterable):
         # s = SortedFrozenSet(iterable)
