@@ -1,3 +1,5 @@
+from collections.abc import Sequence
+
 import pytest
 from sorted_frozen_set.tests.fixtures import s2
 from sorted_frozen_set.sorted_frozen_set import SortedFrozenSet
@@ -50,3 +52,7 @@ def test_slice_step(s2):
 
 def test_slice_ful(s2):
     assert s2[:] == s2
+
+
+def test_sequence_protocol():
+    assert issubclass(SortedFrozenSet, Sequence)

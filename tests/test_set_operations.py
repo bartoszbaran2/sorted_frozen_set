@@ -1,4 +1,6 @@
 # Set operations
+from collections.abc import Set
+
 from sorted_frozen_set.sorted_frozen_set import SortedFrozenSet
 
 
@@ -156,3 +158,7 @@ def test_difference_operator():
     s = SortedFrozenSet([1, 2, 3])
     t = SortedFrozenSet([2, 3, 4])
     assert s - t == SortedFrozenSet({1})
+
+
+def test_set_protocol():
+    assert issubclass(SortedFrozenSet, Set)

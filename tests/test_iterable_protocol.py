@@ -1,5 +1,10 @@
+from collections.abc import Iterable
+
 import pytest
+
+from sorted_frozen_set.sorted_frozen_set import SortedFrozenSet
 from sorted_frozen_set.tests.fixtures import s1
+
 
 # Iterable protocol(iter) - '__iter__'
 def test_iter(s1):
@@ -21,3 +26,7 @@ def test_for_loop(s1):
     for item in s1:
         assert item == expected[index]
         index += 1
+
+
+def test_iterable_protocol():
+    assert issubclass(SortedFrozenSet, Iterable)

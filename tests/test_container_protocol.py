@@ -1,3 +1,6 @@
+from collections.abc import Container
+
+from sorted_frozen_set.sorted_frozen_set import SortedFrozenSet
 from sorted_frozen_set.tests.fixtures import s
 
 
@@ -16,3 +19,7 @@ def test_positive_not_contained(s):
 
 def test_negative_not_contained(s):
     assert not (7 not in s)
+
+
+def test_container_protocol():
+    assert issubclass(SortedFrozenSet, Container)
